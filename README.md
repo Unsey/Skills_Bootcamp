@@ -5,24 +5,7 @@
 # TASK 1
 # Your task is to import this dataset using both libraries (Pandas and Sci-Kit Learn) in your tutorial1.py file.
 # Using Pandas to read the wine.csv file available on Blackboard and then use Sci-Kit learn to import from its dataset folder.
-# You will load them to different variables called dataset and datasetSKL and print their values.
-import numpy as np
-import pandas as pd
-
-dataset = pd.read_csv ("wine.csv")
-pd.set_option('display.width', 1200)
-pd.set_option('display.max_columns', 100)
-
-import sklearn.datasets as dt
-datasetSKL = dt.load_wine()
-
-print (dataset)
-
-print (datasetSKL)
-
-
-# It seems the scikit learn library “discretised" the data so that the machine is able to understand it better.
-# On the other hand, pandas library just printed the raw data as it is in the csv.
+# You will load them to different variables called dataset and datasetSKL and print their values
 
 
 # TASK 2
@@ -34,29 +17,11 @@ print (datasetSKL)
 # The second step is to create a variable label and assign to it the dataset label (i.e. column Class).
 # At the end of this task, you will have two new variables containing the features and label of the wine dataset.
 
-# print (dataset.describe())
-
-features = dataset.drop(columns=["Class"])
-
-print (features)
-
-label=dataset [["Class"]]
-
-print(label)
-
-
 # TASK 3
 
 # For this task, you will have to split the features and label from the wine dataset used in the previous tasks.
 # To do that, create 4 variables to store the split portions of the dataset (respectively: X_train, X_test, Y_train, Y_test)
 # using the train_test_split function from Sci-Kit Learn in a proportion of 60% for training and 40% for testing. In the end, print their values.
-
-
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, Y_train, Y_test =train_test_split(features, label, train_size=0.6)
-
-print(X_train, X_test, Y_train, Y_test)
 
 
 # TASK 4
@@ -65,17 +30,6 @@ print(X_train, X_test, Y_train, Y_test)
 # 1. Import the Decision Tree Classifier and assign it to a variable called d_tree.
 # 2. Train this algorithm by calling the function fit with the previously created wine training features (X_train) and training label (Y_train).
 # 3. Do a prediction using the function predict and the X_test dataset portion, save this prediction in a variable called Y_pred. Print this prediction on the console.
-
-
-from sklearn.tree import DecisionTreeClassifier
-
-d_tree = DecisionTreeClassifier()
-
-d_tree.fit(X_train, Y_train)
-
-Y_pred = d_tree.predict(X_test)
-
-print("Prediction >", Y_pred)
 
 # TASK 5
 
@@ -91,19 +45,3 @@ print("Prediction >", Y_pred)
 # 7. Also, add chart labels (e.g. Prediction/Expected) for X and Y using xlabel and ylabel functions.
 # 8. Finally, call the function show().
 
-from sklearn.metrics import accuracy_score
-acc = accuracy_score(Y_test, Y_pred)
-
-print("Accuracy =", 100*acc)
-
-import matplotlib.pyplot as plt
-
-plt.figure()
-
-plt.scatter([Y_test], [Y_pred])
-
-plt.xlabel("Prediction")
-
-plt.ylabel("Expected")
-
-plt.show()
